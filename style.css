@@ -1,0 +1,14 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    border-radius: 5px;
+    border-style: none;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(103, 72, 214);
+    color: white;
+    font-weight: bold;
+}
