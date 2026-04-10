@@ -1,14 +1,47 @@
 body{
     display: flex;
     justify-content: center;
+    gap: 30px
 }
 
 button{
     border-radius: 5px;
-    border-style: none;
+    border-style: solid;
+    border-color: black;
     height: 50px;
-    width: 50px;
+    width: 80px;
     background-color: rgb(103, 72, 214);
     color: white;
     font-weight: bold;
+}
+
+button:active{
+    background-color: rgb(90, 63, 187);
+    color: rgb(224, 224, 224);
+    transform: translate(2px, 2px);
+}
+
+#array{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    height: 300px;
+    width: 300px;
+    background-color: rgb(103, 72, 214);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+}
+
+#array button{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: black;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(62, 49, 134);
+    color: white;
+    font-weight: bold;
+    font-size: small;
 }
