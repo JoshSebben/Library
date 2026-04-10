@@ -48,25 +48,37 @@ function addBook(){
     addBookToLibrary(author, id, title, isRead, pages);
 
     const div = document.createElement("div");
+    div.id = id
     div.innerHTML = title + ", " + id + ", " + author + ", " + isRead + ", " + pages;
     array.appendChild(div);
 
     const removeBookButton = document.createElement("button");
     removeBookButton.className = "removeBook"
     removeBookButton.innerHTML = "Remove";
+
     const changeStatusButton = document.createElement("button");
     changeStatusButton.className = "changeStatus"
     changeStatusButton.innerHTML = "Status"
+
     div.appendChild(removeBookButton);
     div.appendChild(changeStatusButton);
 }
-const removeBookButton = document.getElementsByClassName("removeBook");
-const changeStatusButton = document.getElementsByClassName("changeStatus");
+
+const removeBookDiv = document.querySelector("removeBook");
+const changeStatusButton = document.querySelector("changeStatus");
 
 function removeBook(){
-    const book = removeBookButton.parentElement;
 
     // Select parent element, compare the inner html of it to the array database and remove if match, then delete the parent element 
+
+    const bookDiv = removeBookDiv.parentElement;
+    const bookId = bookDiv.id;
+
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    if (index !== -1) {
+        myLibrary.splice(index, 1); // splice, not pop!
+        bookDiv.remove();
+    }
 
 
 
@@ -80,8 +92,15 @@ function changeStatus(){
 
 
 newBook.addEventListener('click', addBook);
-removeBookButton.addEventListener('click', removeBook);
-    
+array.addEventListener('click', function(e) {
+    if (e.target.classList.contains('removeBook')) {
+        removeBook(e.target);
+    }
+
+    if (e.target.classList.contains('changeStatus')) {
+        changeStatus(e.target);
+    }
+});    
 
 
 
