@@ -67,29 +67,61 @@ function addBook(){
 const removeBookDiv = document.querySelector("removeBook");
 const changeStatusButton = document.querySelector("changeStatus");
 
-function removeBook(){
+function removeBook(button){
 
     // Select parent element, compare the inner html of it to the array database and remove if match, then delete the parent element 
 
-    const bookDiv = removeBookDiv.parentElement;
+    const bookDiv = button.parentElement;
     const bookId = bookDiv.id;
 
     const index = myLibrary.findIndex(book => book.id === bookId);
     if (index !== -1) {
-        myLibrary.splice(index, 1); // splice, not pop!
+        myLibrary.splice(index, 1);
         bookDiv.remove();
     }
-
-
-
 }
 
-function changeStatus(){
+function changeStatus(button){
+    const bookDiv = button.parentElement;
+    const bookId = bookDiv.id;
+
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    if (index !== -1) {
+        if (myLibrary[index].isRead == "yes"){
+            myLibrary[index].isRead = "no";
+            bookDiv.textContent = myLibrary[index].title + ", " + myLibrary[index].id + ", " + myLibrary[index].author + ", " + myLibrary[index].isRead + ", " + myLibrary[index].pages;
+
+            const removeBookButton = document.createElement("button");
+            removeBookButton.className = "removeBook"
+            removeBookButton.innerHTML = "Remove";
+
+            const changeStatusButton = document.createElement("button");
+            changeStatusButton.className = "changeStatus"
+            changeStatusButton.innerHTML = "Status"
+
+            bookDiv.appendChild(removeBookButton);
+            bookDiv.appendChild(changeStatusButton);
+
+        }
+        else if (myLibrary[index].isRead == "no"){
+            myLibrary[index].isRead = "yes";
+            bookDiv.textContent = myLibrary[index].title + ", " + myLibrary[index].id + ", " + myLibrary[index].author + ", " + myLibrary[index].isRead + ", " + myLibrary[index].pages;
+
+            const removeBookButton = document.createElement("button");
+            removeBookButton.className = "removeBook"
+            removeBookButton.innerHTML = "Remove";
+
+            const changeStatusButton = document.createElement("button");
+            changeStatusButton.className = "changeStatus"
+            changeStatusButton.innerHTML = "Status"
+
+            bookDiv.appendChild(removeBookButton);
+            bookDiv.appendChild(changeStatusButton);
+        } 
+    }
 
     // Select parent element, change html, isRead from no to yes, yes to no
 }
-
-
 
 newBook.addEventListener('click', addBook);
 array.addEventListener('click', function(e) {
